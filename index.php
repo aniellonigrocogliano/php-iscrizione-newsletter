@@ -2,6 +2,7 @@
 include __DIR__ . "/partials/header.php";
 require_once __DIR__ . "/partials/functions.php";
 $error=email_validation();
+
 ?>
 <main class="container">
     <form action="index.php" method="POST" class="">
@@ -17,10 +18,12 @@ $error=email_validation();
                 echo "<div class=\"alert alert-danger mt-3\" role=\"alert\">
                 Devi inserire un email valida!
               </div>";
-            }else{
-                echo "<div class=\"alert alert-success mt-3\" role=\"alert\">
-                L'email è valida!
-              </div>";
+            }elseif($error == "email_valid"){
+                $_SESSION["email"]=$_POST["email"];
+                header("Location: ./thankyou.php");
+            //     echo "<div class=\"alert alert-success mt-3\" role=\"alert\">
+            //     L'email è valida!
+            //   </div>";
             };
          }; 
     ?>
